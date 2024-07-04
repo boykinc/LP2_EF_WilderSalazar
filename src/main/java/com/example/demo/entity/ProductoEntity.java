@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,7 +46,7 @@ public class ProductoEntity {
 	@Column(name = "precio" ,
 			nullable = false 
 			)
-	private Double precioProdu;
+	private BigDecimal precioProdu;
 	
 	@ManyToOne
 	@JoinColumn(name="idCate")

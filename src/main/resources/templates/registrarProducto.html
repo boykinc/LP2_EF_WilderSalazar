@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style type="text/css">
+      body {
+            background-image: url('https://wallpapercave.com/wp/wp10532013.jpg');
+            background-size: 120%;
+            background-position: center;
+            background-repeat: no-repeat;
+           	
+            
+        }
+        
+    	 .profile-container {
+            background-color: #343a40;
+            /* Color de fondo */
+            padding: 10px 10px;
+            /* Espacio interno (arriba y abajo, izquierda y derecha) */
+            border: 1px solid #495057;
+            /* Borde del contenedor */
+            border-radius: 10px;
+            /* Bordes redondeados */
+        }
+        
+        .profile-pic {
+            width: 40px;
+            /* Tamaño de la imagen del perfil */
+            height: 50px;
+            object-fit: cover;
+            /* Ajustar la imagen para cubrir el contenedor */
+        }
+    
+    </style>
+</head>
+<body>
+
+ <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #343a40;">
+        <div class="container">
+           <strong><em> <a class="navbar-brand" href="#">Lista de Productos</a></em></strong>
+            <div class="profile-container d-flex align-items-center ml-auto">
+                <img th:src="${'/usuario_foto/' + foto}" alt="Profile" class="profile-pic rounded-circle mr-3">
+                <strong><em><p style="font-size: 20px" class="mb-0 text-light"><span th:text="${nombreUsuario}"></span></p></em></strong>
+                <a href="/logout" class="btn btn-danger ml-3">Cerrar sesión</a>
+            </div>
+        </div>
+    </nav>
+<br>
+<div class="container" >
+
+	<br>
+	<br>
+	<br>
+	<br>
+    <h2 style="text-align: center;"><em><strong>Registrar Producto</strong></em></h2>
+  
+    <div th:if="${registroCorrecto}" class="alert alert-success" role="alert">
+        <span th:text="${registroCorrecto}"></span>
+    </div>
+    <hr>
+  <form class="row g-3" th:action="@{/registrarProducto}" th:object="${producto}" method="post">
+  <div class="col-md-4">
+    <label for="Producto" class="form-label"> <strong>Producto</strong> </label>
+    <input type="text" class="form-control" id="Producto" th:field="*{nomProdu}" placeholder="Ingrese un Producto" require>
+  </div>
+
+  <div class="col-md-4">
+    <label for="stock" class="form-label"> <strong> Stock</strong> </label>
+    <input type="number" class="form-control" id="stock" th:field="*{stockProdu}" placeholder="Ingrese Stock" require>
+  </div>
+
+   <div class="col-md-4">
+    <label for="precio" class="form-label"> <strong>Precio Unitario</strong> </label>
+    <input type="number" class="form-control" step="0.01" id="precio" th:field="*{precioProdu}" placeholder="Ingrese un precio" require>
+  </div>
+
+  <div class="col-md-4 position-relative">
+      <label for="idCate"> <strong>Categoria:</strong> </label>
+      <select  name="itemId" id="idCate" class="form-control" th:field="*{categorias.idCate}">
+        <option value="" disabled selected>Selecciona una Categoria</option>
+        <option th:each="item : ${listaCategorias}" th:value="${item.idCate}" th:text="${item.nomCate}"></option>
+      </select>
+    </div> 
+	<div class="col-md-3">
+	<br>
+	
+	
+    <a th:href="@{/menu}" class="btn btn-outline-secondary">Regresar</a>
+    <button type="submit" class="btn btn-outline-primary">Guardar</button>
+	</div>
+</form>  
+</div>
+</body>
+</html>
