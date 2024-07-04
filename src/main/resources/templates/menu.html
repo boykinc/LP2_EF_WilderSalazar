@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    
+    <!-- Bootstrap 4.5.2 CSS (Si prefieres usar esta versión específica) -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta charset="UTF-8">
+    <title>Menús</title>
+    
+  <style>
+	.table{
+		width: 80%;
+		margin: 0px auto;
+	}
+	
+	.custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+    }
+    
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+    }
+    
+     .profile-pic {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+</style>
+    
+</head>
+<body style="background-image: url('https://www.xtrafondos.com/wallpapers/one-piece-artwork-4011.jpg');" >
+<div class="container">
+<br>
+<div class="profile-container d-flex align-items-center mb-4">
+        <img th:src="${'/usuario_foto/' + foto}" alt="Profile" class="profile-pic rounded-circle mr-3">
+        <strong><em><p style="font-size:15px " class="mb-0 text-black"><span th:text="${nombreUsuario}"></span></p></em></strong>
+        <a href="/logout" class="btn btn-danger ml-auto">Cerrar sesión</a>
+    </div>
+<hr>
+<br>
+	<a href="#" class="btn btn-primary  pull-right"><b>+</b> Añadir Producto</a>
+	<br>
+	<br>
+    <div class="row table-responsive ">
+    <table class="table table-bordred table-striped">
+    <thead>
+    
+        <tr>
+            <th>codigo</th>
+            <th>Producto</th>
+            <th>Stock</th>
+            <th>Precio</th>
+            <th>Categoria</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    	<tbody>
+            <tr th:each="menu : ${productos}">
+             <td th:text="${menu.productoId}"></td>
+             <td th:text="${menu.nomProdu}" ></td>
+             <td th:text="${menu.stockProdu}" ></td>
+             <td th:text="${menu.precioProdu}" ></td>
+             <td th:text="${menu.categorias.nomCate}"></td>
+             <td class="text-center">
+             <a class='btn btn-info btn-xs' href="#">Editar</a> 
+             <a href="#" class="btn btn-danger btn-xs">Eliminar</a>
+             </td>
+            </tr>
+          </tbody>
+    </table>
+    </div>
+
+</div>
+
+
+
+</body>
+</html>
